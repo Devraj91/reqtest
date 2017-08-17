@@ -1,0 +1,61 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        Welcome to {{title}}!
+    </h1>
+</div>
+<!-- <button md-raised-button >Create</button> -->
+<div>
+    CREATE:
+    <md-select class="drop_box" [(ngModel)]="selectedValue" name="create">
+        <md-option *ngFor="let project of projects_list" [value]="project.value">
+            {{project.value}}
+        </md-option>
+    </md-select>
+</div>
+<div>
+    NAME:
+    <md-input-container class="example-full-width">
+        <input mdInput [(ngModel)]="newProject.title" placeholder="NAME">
+    </md-input-container>
+</div>
+<div>
+    BASE ON:
+    <md-select class="drop_box" [(ngModel)]="selectedValue" name="base">
+        <md-option *ngFor="let base of bases" [value]="base.value">
+            {{base.value}}
+        </md-option>
+    </md-select>
+</div>
+<div>
+    DESCRIPTION:
+    <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="DESCRIPTION"></textarea>
+    </md-input-container>
+</div>
+<div>
+    OWNER:
+    <md-input-container class="example-full-width">
+        <input mdInput placeholder="Owner" [(ngModel)]="newProject.owner">
+    </md-input-container>
+</div>
+<div>
+    END DATE:
+    <md-input-container>
+        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+        <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+</div>
+<button class="btn btn-primary" (click)="addProject()">Create</button>
+<section class="main" *ngIf="projects.length > 0">
+    <ul>
+        <li *ngFor="let project of projects">
+            <div class="view">
+                <label>{{project.title}}</label>
+                <label>{{project.owner}}</label>
+                <button class="destroy"></button>
+            </div>
+        </li>
+    </ul>
+</section>
